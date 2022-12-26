@@ -3,8 +3,8 @@ using namespace std;
 
 class bsearch
 {
-    int rno[10],i,key,flag=0,lb,ub,mid;
-    public:
+    public :
+    int rno[10],i,key,flag,lb,ub,mid;
     void accept()
     {
         cout<<"\nEnter roll numbers of students: ";
@@ -16,6 +16,7 @@ class bsearch
 
     void search()
     {
+
         cout<<"\nEnter a roll number you want to search: ";
         cin>>key;
 
