@@ -1,31 +1,28 @@
 #include<iostream>
 using namespace std;
-
-class sort 
+class sorting
 {
-    float arr[30];
+    float m[30];
     int i,j,n;
     public:
     void insert()
     {
-        cout<<"\nEnter number of students: ";
+        cout<<"Enter no. of students :"<<endl;
         cin>>n;
-        cout<<"\nEnter marks of "<<n<<" students";
+        cout<<"Enter marks :"<<endl;
         for(i=0;i<n;i++)
         {
-            cin>>arr[i];
+            cin>>m[i];
         }
     }
-
     void display()
     {
-        cout<<"\nMarks of "<<n<<" students are: ";
+        cout<<"Entered marks are :"<<endl;
         for(i=0;i<n;i++)
         {
-            cout<<arr[i]<<" ";
+        cout<<m[i]<<endl;
         }
     }
-
     void bubble()
     {
         float temp;
@@ -33,75 +30,78 @@ class sort
         {
             for(j=0;j<n-1;j++)
             {
-                if(arr[j]>arr[j+1])
+                if(m[j]>m[j+1])
                 {
-                    temp=arr[j];
-                    arr[j]=arr[j+1];
-                    arr[j+1]=temp;
+                    temp=m[j];
+                    m[j]=m[j+1];
+                    m[j+1]=temp;
                 }
             }
         }
-
-        cout<<"\nTop five marks are: ";
-        for(i=n-1;i>=0;i--)
+        cout<<"Top Five Scores :"<<endl;
+        for(i=n-1;i>=n-5;i--)
         {
-            cout<<arr[i]<<" ";
+            cout<<m[i]<<" ";
         }
     }
-
     void selection()
     {
-        int min;
+        int min ;
         float temp;
         for(i=0;i<n;i++)
         {
-            min=i;
+            min = i;
             for(j=i+1;j<n;j++)
             {
-                if(arr[j]<arr[min])
+                if(m[j]<m[min])
                 {
                     min=j;
                 }
             }
-            temp=arr[i];
-            arr[i]=arr[min];
-            arr[min]=temp;
-        }
-        cout<<"\nTop five marks are: ";
-        for(i=n-1;i>=0;i--)
-        {
-            cout<<arr[i]<<" ";
-        }
+            temp=m[i];
+            m[i]=m[min];
+            m[min]=temp;
+       }
+       cout<<"TOP FIVE MARKS ARE :"<<endl;
+       for(i=n=1;i>=n-5;i--)
+       {
+        cout<<m[i]<<endl;
+       }
     }
 }s;
 
-int main()
+int main ()
 {
     int ch;
-    cout<<"\nInsert information: ";
+    cout<<"\nInsert information :";
     s.insert();
-do{
-    cout<<"\n1.Display";
-    cout<<"\n2.Top five by bubble sort";
-    cout<<"\n3.Top five by selection sort";
+    do{
+    cout<<"\n1.Display :";
+    cout<<"\n2.Top five by bubble sort :";
+    cout<<"\n3.Top five by selection sort :";
     cout<<"\n4.Exit";
 
-    cout<<"\nEnter your choice.";
+    cout<<"Enter your choice :";
     cin>>ch;
-
-    switch(ch)
-    {
-        case 1:
+     
+     switch(ch)
+     {
+        case 1 :
         s.display();
         break;
 
-        case 2:
+        case 2 :
         s.bubble();
         break;
 
-        case 3:
+        case 3 :
         s.selection();
         break;
-    }
-}while(ch!=4);
+
+
+     }
+    }while(ch!=4);
+    
+    return 0;
+    
 }
