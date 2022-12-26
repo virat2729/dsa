@@ -63,7 +63,7 @@ class sorting
             m[min]=temp;
        }
        cout<<"TOP FIVE MARKS ARE :"<<endl;
-       for(i=n=1;i>=n-5;i--)
+       for(i=n-1;i>=n-5;i--)
        {
         cout<<m[i]<<endl;
        }
