@@ -1,142 +1,159 @@
-#include <iostream>
+#include<iostream>
+#program by Narendra Dwivedi Intel 20U520
+#include<string>
 using namespace std;
-class publication{
-   public:
-	float price;
-	string name;
-	publication(){
-		name="none";
-		price=0.0;}
-	void getdata(string s){
-	cout<<"\n Enter the name of the"<<s<<":";
-	cin>>name;
-	bool flag=false;
-	while(flag==false){
-			cout<<"\n Enter the price of the"<<s<<":";
-			cin>>price;
-			try {
-			 if(price<=0)
-			 throw price;
-			 else
-			 flag=true;
-            }
-			catch(float x)
-			{	price=0.0;
-				cout<<"\n You have entered price is invalid ";
-				cout<<"\n The price has set to "<<price;
-				cout<<"\n Enter valid input";
-			}
-		}
-	}
-inline string getname(){
-	return name;
-   }
-inline float getprice(){
-	return price;  
-	}
-};
-class book: public publication{
-	public:
-	int pages;
-	 book(){pages=0;}
-	void getpages(){
-		bool flag=false;
-		while(flag==false){
-			cout<<"\n Enter the no of pages";
-			cin>>pages;
-			 try{if(pages<=0)
-				throw pages;
-				else
-			flag=true;
-             }
-			catch(int x){
-				pages=0;
-				cout<<"\n You have entered no of pages  is invalid ";
-				cout<<"\n The no of pages  has set to "<<pages;
-				cout<<"\n Enter valid input";
-				}
-		}
-    }
-void display(){ cout<<"\t\n book is Found";
-				cout<<"\t\n Details of book";
-				cout<<"\t\n Name of the Book"<<getname();
-				cout<<"\t\n No of pages"<<pages;
-				cout<<"\t\n The price is"<<getprice();
-			 }
-};
-class tape: public publication{
-	public:
-	float time;
-	tape(){time=0.0;}
-	void gettime() {	 bool flag=false;
-			while(flag==false){
-				cout<<"\n Enter the playing time of tape in mins";
-				cin>>time;
-			try{	if(time<=0)
-					throw time;
-					else
-					flag=true;}
-			catch(float x){ time=0.0;
-					cout<<"\n You have entered time is invalid ";
-					cout<<"\n The time has set to "<<time;
-					cout<<"\n Enter valid input";
-					}
-			}
-		}
-void display(){	cout<<"\t\n Audio cassette is Found";
-				cout<<"\t\n Details of Audio cassette";
-				cout<<"\t\n Name of the Tape "<<getname();
-				cout<<"\t\n Playing time"<<time<<"Mins";
-				cout<<"\t\n The price is"<<getprice();
-				}
-};
-int main(){		int choice;
-			string n;
-			book objb;
-			tape objt;
-			cout<<"\t\n  Welcome to inheritance Program";
-			do{		cout<<"\n Menu";
-					cout<<"\t1.Insert a book\n\t2.Insert an audio cassette\n\t3.Display Book Details";
-					cout<<"\n\t4.Display audio cassttee details\n\t5.Exit";
-					cout<<"\t\n Enter the choice";
-					cin>>choice;
-				switch(choice){   
-				case 1:  objb.getdata("book");
-						objb.getpages();
-						cout<<"\t\n book is being searched"<<endl;
-						break;
-				case 2: objt.getdata("Audio Cassttee");
-						objt.gettime();
-						cout<<"\t\n Audio Cassttee is being searched"<<endl;
-						break;
-				case 3: try{  
-						if(objb.getname()=="NONE")
-								throw 3;
-						else{	objb.display();
-								cout<<"\t\n We will hope that you purchase book again";
-							}
-					}
-					catch(int x) {
-		    			 cout<<"\t\n No book has been searched yet";
-	                    cout<<"\t\n choose correct option";
-						 }
-						 break;
-				case 4: try{  if(objt.getname()=="NONE")
-								throw 3;
-							else{		objt.display();
-									cout<<"\t\n We will hope that you purchase audio Cassttee again";
-								}
-							}
-						catch(int x){	cout<<"\t\n No audio cassette has been searched yet";
-									cout<<"\t\n choose correct option";
-									}
-						 break;
-			    case 5: cout<<"\t\n ..........VISIT AGAIN..........";
-				break;
-        }
-}while(choice!=5);
-cout<<"\t\n End of the program";
-	cout<<"\t\n Thnak you";
-	return 0;
+//base class publication
+class publication
+{
+private:
+string title;
+float prices;
+public:
+publication()
+ {
+title="";
+prices=0.0;
 }
+void get_data()
+{
+cout<<"\nEnter Title :";
+cin.ignore();//clear input buffer
+getline(cin,title);
+cout<<"\nEnter Price : ";
+cin>>prices;
+}
+void put_data()
+{
+cout<<"\n ________________________________ \n";
+cout<<"\n Information : " <<endl;
+cout<<"\n Title :"<<title;
+cout<<"\n Price :"<<prices;
+}
+};
+class book: public publication
+{
+private:
+int pages;
+public:
+book(){
+pages=0;
+}
+void get_data()
+{
+publication::get_data();
+cout<<endl;
+cout<<"Enter Page Count : \n";
+cin>>pages;
+}
+void put_data()
+{
+publication::put_data();
+try{
+if(pages<0)
+ throw pages;}
+ catch(int f)
+ {
+ cout<<"\n error: pages not valid :"<<f;
+ pages=0;
+ }
+cout<<"\n Pages Are :"<<pages;
+}
+};
+class tape: public publication
+{
+private:
+float playtime;
+public:
+tape()
+{
+playtime=0.0;
+}
+void get_data()
+{
+publication::get_data();
+cout<<"Enter Play Time Of Cassette \n";
+cin>>playtime;
+}
+void put_data()
+{
+publication::put_data();
+try
+{
+if(playtime<0.0)
+throw playtime;
+}
+catch(float r)
+{
+cout<<"\n Error: Invalid Playtime : "<<playtime;
+playtime=0.0;
+}
+cout<<"\n Playtime is : "<<playtime;
+}
+};
+int main()//main program
+{
+book b[10];// arrray of objects
+tape t[10];
+int choice=0,bookCount=0,tapeCount=0;
+cout<<"-----------------------";
+do
+{
+cout<<"\n 1. Add book ";
+cout<<"\n 2. Add tape: ";
+cout<<"\n 3. Display book ";
+cout<<"\n 4. Display tape";
+cout<<"\n 5. Exit:"<<endl;
+cout<<"\n Enter Choice : ";
+cin>>choice;
+switch(choice)
+{
+case 1:
+ {
+ cout<<"\n--------------\n";
+ cout<<"Add Book: \n";
+ b[bookCount].get_data();
+ bookCount++;
+ break;
+ }
+case 2:
+ {
+ cout<<"\n--------------\n";
+ cout<<"Add Tape: \n";
+ t[tapeCount].get_data();
+ tapeCount++;
+ break;
+ }
+case 3:
+ {
+ cout<<"\n (books)";
+ for(int j=0;j<bookCount;j++)
+ {
+ b[j].put_data();
+ }
+ break;
+ }
+case 4:
+ {
+ cout<<"\n (tape)";
+ for(int j=0;j<tapeCount;j++)
+ {
+ t[j].put_data();
+ }
+ break;
+ }
+case 5:
+ {
+ cout<<"**********Program Exited
+Successfully**********"<<endl;
+exit(0);
 
+ }
+ default:
+ {
+ cout<<"\n Invalid";
+ }
+}
+}
+while(choice!=5);
+return 0;
+}
