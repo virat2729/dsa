@@ -142,8 +142,7 @@ case 4:
  }
 case 5:
  {
- cout<<"**********Program Exited
-Successfully**********"<<endl;
+ cout<<"**********Program Exited Successfully**********"<<endl;
 exit(0);
 
  }
