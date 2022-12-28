@@ -1,5 +1,4 @@
 #include<iostream>
-#program by Narendra Dwivedi Intel 20U520
 #include<string>
 using namespace std;
 //base class publication
