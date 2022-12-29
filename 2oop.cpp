@@ -1,58 +1,93 @@
 #include<iostream>
-#include<string>
-#include<cstring>
-#include<stdlib.h>
 using namespace std;
-class student
-{	int roll;
-	char name[30];
-	float marks;
-public:
-	student(){ 
-	roll=0;
-	marks=0;
-	strcpy(name,"");
+
+class student;
+class person{
+    private:
+        string name,blo,add,tele,dlo,dob;
+    
+    public:
+    friend class student;
+
+    person(){
+        //this->name=name;
+        name="",blo="",tele="",dlo="",dob="";
     }
-student(int roll,char name[30], float marks){
-	this->roll=roll;
-	this->marks=marks;
-	strcpy(this->name,name);
-	}
-void accept(){
-	cout<<"Enter the name";
-	cin>>name;
-	cout<<"Enter the rollno";
-	cin>>roll;
-	cout<<"Enter the marks";
-	cin>>marks;
-	}
-void display(){
-	cout<<"\n\nNAME:"<<name;
-	cout<<"\n\nROLLNO:"<<roll;
-	cout<<"\n\nMARKS:"<<marks;
-	}
+
+    person(const person &p){
+        name=p.name;
+        blo=p.blo;
+        add=p.add;
+        tele=p.tele;
+        dlo=p.dlo;
+        dob=p.dob;
+    }
+
 };
-int main(){  
-	int i,ch,n;
-	student s[10];
-	while(1){
-	cout<<"\n1.CREATE\n2.DISPLAY\n3.EXIT";
-	cout<<"\n Enter your choice: ";
-	cin>>ch;
-	switch(ch){
-	   case 1:cout<<"\n Enter how many student information you want to create:";
-				cin>>n;
-				for(i=0;i<n;i++){
-			    cout<<"enter information of student present at position "<<i+1<<endl;
-				s[i].accept();
-				}
-				 break;
-	   case 2:cout<<"Students database is as follows";
-				for(i=0;i<n;i++)
-				s[i].display();
-				break;
-	   case 3:  exit(0);
-   }
-}
-	return 0;
+
+class student{
+    private:
+        int roll;
+        string cn;
+        char *div;
+        char d;
+
+    public:
+        static int count; //How many objects are created is count by count
+        student(){
+            roll=0;
+            cn="";
+            div=NULL;
+            count++;
+        }
+
+        void acceptStudent(person p){
+            cout<<"Enter your Name : "<<endl;
+            cin>>p.name;
+            cout<<"Enter your BloodGroup : "<<endl;
+            cin>>p.blo;
+            cout<<"Enter your address : "<<endl;
+            cin>>p.add;
+            cout<<"Enter your Telephone number : "<<endl;
+            cin>>p.tele;
+            cout<<"Enter your Driving License No : "<<endl;
+            cin>>p.dlo;
+            cout<<"Enter your Date of Birth  : "<<endl;
+            cin>>p.dob;
+            cout<<"Enter your Roll No : "<<endl;
+            cin>>roll;
+            // cout<<"Enter your Class Name : "<<endl;
+            // cin>>cn;
+            // cout<<"Enter your Division : "<<endl;
+            // cin>>div;
+            // div=&d;
+        }
+
+        inline void displayStudent(person &p){
+            cout<<"Name:"<<p.name<<"|";
+            cout<<"Blood:"<<p.blo<<"|";
+            cout<<"Address:"<<p.add<<"|";
+            cout<<"Phone:"<<p.tele<<"|";
+            cout<<"Liscense:"<<p.dlo<<"|";
+            cout<<"Birthdate:"<<p.dob<<"|";
+            cout<<"Roll Number:"<<roll<<"|";
+            // cout<<"Div:"<<div<<"|";
+            // cout<<"Class Name:"<<cn;
+            cout<<endl;
+        }
+        ~student(){
+            delete(div);
+        }
+        static int get(){
+            return count;
+        }
+};
+int student::count=0;
+
+int main(){
+    person p;
+    student s;
+    s.acceptStudent(p);
+    s.displayStudent(p);
+   
 }
