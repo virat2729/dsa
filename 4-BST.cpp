@@ -58,8 +58,10 @@ Node* swapNodes(Node* root) {
 }
 
 bool search(Node* root, int value) {
-    if(root == NULL)
+    if(root==NULL)
+    {
         return false;
+    }
     else if(root->data == value)
         return true;
     else if(value <= root->data)
@@ -70,12 +72,6 @@ bool search(Node* root, int value) {
 
 int main() {
     Node* root = NULL;
-    int arr[] = { };
-    int n = sizeof(arr) / sizeof(arr[0]);
-    for(int i = 0; i < n; i++) {
-        root = insertNode(root, arr[i]);
-    }
-    
     int choice = 0;
     int value;
     
@@ -110,12 +106,13 @@ int main() {
             case 5:
                 cout << "Enter the value to be searched: ";
                 cin >> value;
-                if(search(root, value))
+                if(search(root, value)==true)
                     cout << "The value " << value << " is present in the tree." << endl;
-                else
+                else if(search(root, value)==false)
                     cout << "The value " << value << " is not present in the tree." << endl;
                 break;
             case 6:
+            
                 cout << "Exit..." << endl;
                 break;
             default:
@@ -126,4 +123,3 @@ int main() {
     }
     return 0;
 }
-
