@@ -20,7 +20,7 @@ void tree::input()
 		visited[i]=0;
 		for(j=0;j<v;j++)
 		{
-			a[i][j]=0;
+			a[i][j]=999;
 		}
 	}
 
